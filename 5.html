@@ -6,107 +6,22 @@
 </head>
 <body>
 <!--
-Обязательное задание.
+Необязательное задание.
 
-Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
-Необходимо реализовать функцию:
-mathOperation(arg1, arg2, operation);
-Параметры:
-arg1 - первое число.
-arg2 - второе число.
-operation - строка, которая содержит один символ из: "+", "-", "*", "/".
-Функция mathOperation должна вернуть результат операции, который был передан в
-параметр operation для двух первых аргументов (arg1 и arg2).
-Функция mathOperation должна использовать для вычисления функции из 4 задания.
+Вывести с помощью цикла for числа от 0 до 9, НЕ используя тело цикла. То есть
+выглядеть должно примерно так:
 
-Примеры вызова функции:
-console.log(mathOperation(5, 3, "+")); // 8
-console.log(mathOperation(5, 3, ":)")); // NaN
+for(…){/* здесь пусто */}
 
-Функции mathOperation всегда передаются корректные числа, проверки на NaN,
-Infinity делать не нужно, однако, в случае если был передан некорректный
-аргумент в параметр operation, необходимо вернуть NaN.
-
-Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+Вместо многоточия нужно записать нужные разделы.
+Помните, что в первом, втором и третьем раздела цикла можно не только писать
+условия или увеличивать счетчик, в этих разделах допустимы любые выражения,
+например вызовы функций.
 -->
 <script>
   "use strict";
 
-  /**
-   * Вычисляет операцию, переданную в третий параметр между двумя первыми
-   * аргументами функции.
-   * @param {number} arg1 - первое число..
-   * @param {number} arg2 - второе число.
-   * @param {number} operation - строка, которая содержит один символ из: "+", "-", "*", "/".
-   * @return {number} Возвращает результат операции, который был передан в параметр 
-   operation для двух первых аргументов (arg1 и arg2). Если параметр не верно задан ,возвращает NaN.
-   */
-  function mathOperation (arg1, arg2, operation){
-  	switch (operation){
-  		case "+":
-  			return fnSum(arg1, arg2);
-  		case "-":
-  			return fnDifference(arg1, arg2);
-  		case "*":
-  			return fnMultiply(arg1, arg2);
-  		case "/":
-  			return fnDivision(arg1, arg2);
-  		default:
-  			return NaN;
-  	}
-  }
-
-  /**
-   * Сумма аргументов.
-   * @param {number} a - Первое число.
-   * @param {number} x - Второе число.
-   * @return {number} Сумма чисел.
-   */
-  function fnSum(a, x){
-  	const result = a + x;
-  	return result;
-  }
-
-  /**
-   * Разность аргументов.
-   * @param {number} a - Первое число.
-   * @param {number} x - Второе число.
-   * @return {number} Разность чисел.
-   */
-  function fnDifference(a, x){
-  	if (a > x){
-  		const result = a - x;
-  		return result;
-  	}
-  	return x - a;	
-  }
-
-  /**
-   * Произведение аргументов.
-   * @param {number} a - Первое число.
-   * @param {number} x - Второе число.
-   * @return {number} произведение чисел.
-   */
-  function fnMultiply(a, x){
-  	const result = a * x;
-  	return result;
-  }
-
-  /**
-   * Деление аргументов.
-   * @param {number} a - Первое число.
-   * @param {number} x - Второе число.
-   * @return {number} деление чисел.
-   */
-  function fnDivision(a, x){
-  	const result = a / x;
-  	return result;
-  }
-
-  console.log(mathOperation(2, 5, "+")) // 7
-  console.log(mathOperation(10, 5, "-")) //
-  console.log(mathOperation(2, 5, "*"))
-  console.log(mathOperation(2, 5, "/"))
+  for (let i = 0; i <= 9; console.log(i++)) {}
 </script>
 </body>
 </html>
