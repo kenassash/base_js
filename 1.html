@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <style>
-    .product {
-      width: 200px;
-      padding: 10px;
-      float: left;
-      margin-right: 30px;
-      box-shadow: 0 0 4px black;
+    .nav {
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -20,70 +18,69 @@
 Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
 стирать, код с решением задачи пишем под комментарием.
 -->
-<div class="product">
-  <div class="productName">Товар 1</div>
-  <img src="http://lorempixel.com/200/300/food/1/" alt="">
-  <button>В корзину</button>
-</div>
-<div class="product">
-  <div class="productName">Товар 2</div>
-  <img src="http://lorempixel.com/200/300/food/2/" alt="">
-  <button>В корзину</button>
-</div>
-<div class="product">
-  <div class="productName">Товар 3</div>
-  <img src="http://lorempixel.com/200/300/food/3/" alt="">
-  <button>В корзину</button>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" data-text="T1">
+      <a class="nav-link active" href="#">Link 1</a>
+    </li>
+    <li class="nav-item" data-text="X6">
+      <a class="nav-link" href="#">Link 2</a>
+    </li>
+    <li class="nav-item" data-text="H99">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+
+  <div class="text">Уверен, ты справишься с этим заданием!</div>
+
+  <input type="range" min="20" max="100">
+  <div id="inputDiv" style="font-size: 20px;">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat, expedita.
+  </div>
 </div>
 
 <script>
   "use strict";
 
   /*
-  1. Установите всем элементам с классом "productName" размер шрифта 24px.
-   */
-  const size = document.querySelectorAll('.productName');
-  size.forEach(element => element.style.fontSize = '24px');
+  1. Необходимо сделать так, чтобы при клике на элемент с классом "nav-link",
+  данному элементу ставился класс "active", при этом у всхе других элементов с
+  классом nav-link данных элемент отсутствовал, необходимо использовать
+  делегирование события.
+  Также необходимо чтобы в div с классом text ставился нужный текст, который
+  прописан в объекте panelText (вам необходимо определить самостоятельно, что
+  общего между данной в html версткой и объектом ниже).
+  */
+  const panelText = {
+    T1: "Уверен, ты справишься с этим заданием!",
+    X6: "Знаю, программирование это нелегко.",
+    H99: "Однако, программирование, в итоге, принесет свои плоды.",
+  };
+  
+  let navLink = document.querySelector('.nav-link'); 
 
-  /*
-  2. Установите всем элементам с классом "product" внешний отступ справа 50px.
-   */
-  const margin = document.querySelectorAll('.product');
-  margin.forEach(element => element.style.marginRight = '50px');
+  document.querySelector('.nav-tabs').addEventListener('click', event => {
+   if (!event.target.classList.contains('nav-link')) {
+      return;
+   }
+    navLink.classList.remove('active');
+    event.target.classList.add('active'); 
+    navLink = event.target;
 
-  /*
-  3. При клике на кнопку "В корзину" название кнопки должно поменяться на
-  "Добавлено" и кнопка должна стать неактивной.
-   */
-  document.addEventListener('click', event => {
-    const button = event.target;
-    button.textContent = 'Добавлено';
-    button.disabled = true;
+    document.querySelector('.text').textContent = panelText[navLink.parentElement.dataset.text];
   });
 
-  /*
-  4. Создайте полную (глубокую) копию элемента с классом product, измените в
-  этой копии путь до картинки на:
-  http://lorempixel.com/200/300/food/4/
-  Поставьте название товара в данной копии "Товар 4" и замените последний
-  отображенный товар на странице на созданную копию. У данной копии также
-  должен правильно работать код из 3-го задания.
-   */
-  const сlone = document.querySelector('.product').cloneNode(true);
-  const clone = document.querySelector('img');
-  clone.src = 'http://lorempixel.com/200/300/food/4/';
-  document.querySelector('.productName').textContent = 'Товар 4';
-  // Не совсем получился клон. Получилось что я изменил "криво" первый класс. В решении посмотрел и разобрался
-  // И еще почему то 5 задание выполнятеся, если я закомментирую 4 задание полностью :)
 
   /*
-  5. По истечению 2 секунд с момента открытия страницы первый товар должен быть
-  удален из html.
+  2. Необходимо сделать так, чтобы при изменении input'а менялся и размер шрифта
+  у элемента с id="inputDiv". Перемещение ползунка должно плавно увеличивать
+  шрифт у текста.
    */
-  setTimeout(function() {
-  	document.querySelector('.product').remove();
-  }, 2000);
-
+  const slider = document.querySelector('input');
+  const inputDivEl = document.getElementById('inputDiv');
+  slider.addEventListener('input', () => {
+    inputDivEl.style.fontSize = slider.value + 'px';
+  });
 
 </script>
 </body>
